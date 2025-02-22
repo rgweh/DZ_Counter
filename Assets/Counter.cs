@@ -1,29 +1,26 @@
-using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Counter : MonoBehaviour
 {
-    [SerializeField] private TextMeshPro _textMesh;
+    [SerializeField] private CounterUpdater _counterUpdater;
     [SerializeField] private float _counterSpeed = 0.5f;
 
     private int _number = 0;
     private bool _isWorking = false;
-    private void Update()
+
+    private void OnMouseUp()
     {
-        if (Input.GetMouseButtonDown(0))
+        Debug.Log("pressed");
+
+        if (_isWorking)
         {
-            if (_isWorking)
-            {
-                _isWorking = false;
-            }
-            else
-            {
-                _isWorking = true;
-                StartCoroutine(Countdown());
-            }
+            _isWorking = false;
+        }
+        else
+        {
+            _isWorking = true;
+            StartCoroutine(Countdown());
         }
     }
 
@@ -34,13 +31,9 @@ public class Counter : MonoBehaviour
         for (int i = 0; _isWorking; i++)
         {
             _number++;
-            UpdateCounter(_number);
+            _counterUpdater.UpdateCounter(_number);
+
             yield return wait;
         }
-    }
-
-    private void UpdateCounter(int number)
-    {
-        _textMesh.text = Convert.ToString(number);
     }
 }
