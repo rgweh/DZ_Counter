@@ -8,17 +8,17 @@ public class Counter : MonoBehaviour
     public bool IsWorking { get; private set; }
     public int Number { get; private set; }
 
-    public void StartCounter()
+    public Coroutine StartCounter()
     {
-        StartCoroutine(Countdown());
+        return StartCoroutine(Countdown());
     }
 
-    public void PauseCountdown()
+    public void Pause()
     {
         IsWorking = false;
     }
     
-    public void UnpauseCountdown()
+    public void Unpause()
     {
         IsWorking = true;
     }
@@ -29,20 +29,16 @@ public class Counter : MonoBehaviour
         Number = 0;
     }
 
-    public IEnumerator Countdown()
+    private IEnumerator Countdown()
     {
         var wait = new WaitForSeconds(_counterSpeed);
 
         for (int i = 0; i >= 0; i++)
         {
-            if (IsWorking)
-            {
-                Number++;
+            Debug.Log(i);
+            Number++;
 
-                yield return wait;
-            }
-            else
-                yield return null;
+            yield return wait;
         }
     }
 

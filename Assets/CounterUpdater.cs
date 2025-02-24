@@ -7,10 +7,8 @@ public class CounterUpdater : MonoBehaviour
     [SerializeField] private TextMeshPro _textMesh;
     [SerializeField] private Counter _counter;
 
-    private void Start()
-    {
-        _counter.StartCounter();
-    }
+    private Coroutine _coroutine;
+
     private void Update()
     {
         _textMesh.text = _counter.Number.ToString();
@@ -19,8 +17,14 @@ public class CounterUpdater : MonoBehaviour
     private void OnMouseUp()
     {
         if (_counter.IsWorking)
-            _counter.PauseCountdown();
+        {
+            _counter.Pause();
+            StopCoroutine(_coroutine);
+        }
         else
-            _counter.UnpauseCountdown();
+        {
+            _counter.Unpause();
+            _coroutine = _counter.StartCounter();
+        }
     }
 }
