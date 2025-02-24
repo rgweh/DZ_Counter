@@ -5,12 +5,28 @@ public class Counter : MonoBehaviour
 {
     [SerializeField] private float _counterSpeed = 0.5f;
 
-    public bool IsWorking = false;
-    public int Number = 0;
+    public bool IsWorking { get; private set; }
+    public int Number { get; private set; }
 
-    public Coroutine SetUpCourutine()
+    public void StartCounter()
     {
-        return StartCoroutine(Countdown());
+        StartCoroutine(Countdown());
+    }
+
+    public void PauseCountdown()
+    {
+        IsWorking = false;
+    }
+    
+    public void UnpauseCountdown()
+    {
+        IsWorking = true;
+    }
+
+    private void Start()
+    {
+        IsWorking = false;
+        Number = 0;
     }
 
     public IEnumerator Countdown()
