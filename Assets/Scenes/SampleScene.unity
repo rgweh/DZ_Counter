@@ -568,8 +568,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a77142f754ada4aa2e85816b38a764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _counterUpdater: {fileID: 689774237}
   _counterSpeed: 0.5
+  IsWorking: 0
+  Number: 0
 --- !u!65 &689774236
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -604,6 +605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textMesh: {fileID: 689774232}
+  _counter: {fileID: 689774235}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

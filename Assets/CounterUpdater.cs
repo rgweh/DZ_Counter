@@ -1,12 +1,28 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class CounterUpdater : MonoBehaviour
 {
-    [SerializeField] TextMeshPro _textMesh;
+    [SerializeField] private TextMeshPro _textMesh;
+    [SerializeField] private Counter _counter;
+    
+    private Coroutine _countdown;
 
-    public void UpdateCounter(int number)
+    private void Start()
     {
-        _textMesh.text = number.ToString();
+        _counter.SetUpCourutine();
+    }
+    private void Update()
+    {
+        _textMesh.text = _counter.Number.ToString();
+    }
+
+    private void OnMouseUp()
+    {
+        if (_counter.IsWorking)
+            _counter.IsWorking = false;
+        else
+            _counter.IsWorking = true;
     }
 }
