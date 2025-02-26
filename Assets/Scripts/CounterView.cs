@@ -4,9 +4,10 @@ using UnityEngine;
 public class CounterView : MonoBehaviour
 {
     [SerializeField] private TextMeshPro _textMesh;
+    [SerializeField] private Counter _counter;
 
-    public void UpdateText(int number)
+    public void Update()
     {
-        _textMesh.text = number.ToString();
+        _textMesh.text = _counter.Number.ToString();
     }
 }
